@@ -88,20 +88,16 @@ Infrastructure Logs ──┘                       ↓
 ## 📸 Screenshots
 
 ### Dashboard — Real-time Metrics & Container Health
-
 ![Dashboard](docs/screenshots/dashboard.png)
 
 ### AI Log Analyzer — Structured Root-Cause Diagnosis
-
 ![Log Analyzer](docs/screenshots/logs.png)
 
 ### Automatic Incident Detection
-
 ![Incident Detection](docs/screenshots/incident-detected.png)
 
 ### Settings
-
-![Settings](docs/screenshots/Settings.png)
+![Settings](docs/screenshots/settings.png)
 
 ## 🤖 Example: AI Diagnosis Output
 
