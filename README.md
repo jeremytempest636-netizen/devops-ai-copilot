@@ -99,9 +99,9 @@ Infrastructure Logs ──┘                       ↓
 
 ![Incident Detection](docs/screenshots/incident-detected.png)
 
-### Incident History
+### Settings
 
-![Incident History](docs/screenshots/incidents.png)
+![Settings](docs/screenshots/Settings.png)
 
 ## 🤖 Example: AI Diagnosis Output
 
