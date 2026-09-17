@@ -1,0 +1,35 @@
+[
+  {
+    "id": "INC-001",
+    "createdAt": "2026-09-17T05:11:08.154Z",
+    "status": "open",
+    "source": "auto-detection",
+    "severity": "HIGH",
+    "problem": "The vast majority of containers report a 'warning' state with NaN memory readings, indicating a widespread stats collection or container lifecycle failure rather than isolated app issues.",
+    "possibleCauses": [
+      "Docker daemon stats API failing to return valid metrics for stopped/paused/exited containers",
+      "Containers are in a non-running state (created/exited/restarting) causing NaN memory stats",
+      "Monitoring agent losing connection to Docker socket or cgroup stats interface",
+      "Host memory pressure (84%) and disk usage (85%) causing cgroup/stats subsystem instability",
+      "Docker daemon or containerd degraded, unable to report per-container resource usage"
+    ],
+    "recommendations": [
+      "Check actual container states via docker ps -a to confirm which are running vs exited/created",
+      "Restart the monitoring/stats collection agent or Docker daemon if stats API is unresponsive",
+      "Investigate high memory (84%) and disk (85%) usage on host to rule out resource exhaustion causing instability",
+      "Prune unused/stopped containers and volumes to free disk space",
+      "Isolate and inspect one representative warning container's logs and inspect output to identify root cause",
+      "Set up alerting threshold review since near-total warning state suggests monitoring pipeline issue, not per-app failure"
+    ],
+    "commands": [
+      "docker ps -a --format 'table {{.Names}}\\t{{.Status}}\\t{{.State}}'",
+      "docker stats --no-stream",
+      "docker inspect jeremy-final-container | grep -i state -A 10",
+      "df -h && free -m",
+      "docker system df",
+      "docker system prune -f --volumes",
+      "systemctl status docker",
+      "journalctl -u docker --since '30 min ago'"
+    ]
+  }
+]
