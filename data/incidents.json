@@ -31,5 +31,34 @@
       "systemctl status docker",
       "journalctl -u docker --since '30 min ago'"
     ]
+  },
+  {
+    "id": "INC-002",
+    "createdAt": "2026-09-17T05:49:11.334Z",
+    "status": "open",
+    "source": "manual-log",
+    "severity": "HIGH",
+    "problem": "Application cannot connect to PostgreSQL database on localhost port 5432",
+    "possibleCauses": [
+      "PostgreSQL service is not running or crashed",
+      "Postgres is bound to a different interface/port or config misconfigured",
+      "Database container not started or exited",
+      "Firewall or socket permission blocking local connection"
+    ],
+    "recommendations": [
+      "Check PostgreSQL service/container status and restart if stopped",
+      "Verify postgresql.conf listen_addresses and port settings",
+      "Inspect Postgres logs for crash or startup errors",
+      "Confirm pg_hba.conf allows local connections",
+      "Check disk space and resource limits that could cause DB crash"
+    ],
+    "commands": [
+      "systemctl status postgresql",
+      "docker ps -a | grep postgres",
+      "docker logs <postgres_container_id>",
+      "pg_lsclusters",
+      "netstat -tulnp | grep 5432",
+      "journalctl -u postgresql -n 100"
+    ]
   }
 ]
